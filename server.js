@@ -10,11 +10,12 @@ import photoRouter from "./routes/photoRoute.js";
 const PORT = process.env.PORT || 8080
 const app = express()
 const corsOptions = {
-    origin: "*", 
-    methods: ["POST","GET"],
-    credentials: true,
-    optionsSuccessStatus: 200 
-  };
+  origin: "*", 
+  methods: ["POST", "GET", "PUT", "DELETE"], 
+  credentials: true,
+  optionsSuccessStatus: 200 
+};
+
 app.use(cors(corsOptions))
 app.use(express.json());
 

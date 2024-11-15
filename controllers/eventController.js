@@ -32,6 +32,26 @@ const addEvent = async (req, res) => {
   }
 };
 
+const getTopEvent = async (req, res) => {
+  try {
+    // MongoDB aggregation pipeline to get a random event with selected fields
+    const topEvent = await eventModel.aggregate([
+      { $sample: { size: 1 } }, // Select one random document
+      { $project: { _id: 1, name: 1, profilePhoto: 1, date: 1 } } // Only include specified fields
+    ]);
+
+    // Check if an event was found
+    if (topEvent.length === 0) {
+      return res.status(404).json({ message: 'No event found' });
+    }
+
+    // Return the random event as a JSON response
+    res.status(200).json(topEvent[0]);
+  } catch (error) {
+    // Handle any errors that occur
+    res.status(500).json({ message: 'Error retrieving random event', error: error.message });
+  }
+};
 
 
-export {getEvents, addEvent};
+export {getEvents, addEvent, getTopEvent};
