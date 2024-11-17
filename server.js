@@ -6,6 +6,8 @@ import eventRouter from "./routes/eventRoute.js";
 import makeupRouter from "./routes/makeupRoute.js";
 import modelRouter from "./routes/modelRoute.js";
 import photoRouter from "./routes/photoRoute.js";
+import adminRouter from "./routes/adminRoute.js";
+import authMiddleware from "./middleware/auth.js";
 
 const PORT = process.env.PORT || 8080
 const app = express()
@@ -25,7 +27,11 @@ app.use('/api/event', eventRouter);
 app.use('/api/makeup', makeupRouter);
 app.use('/api/model', modelRouter);
 app.use('/api/photo', photoRouter);
+app.use('/api/admin', adminRouter);
+app.get('/auth/validate', authMiddleware, (req, res) => {
+  res.status(200).json({ isValid: true });
+});
 
-console.log('Hola');
 
-app.listen(PORT,()=>{console.log(`Corriendo en el localHost:${PORT}`)})
+
+app.listen(PORT,()=>{console.log(`Running on localHost:${PORT}`)})

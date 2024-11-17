@@ -15,10 +15,10 @@ const addModel = async (req, res) => {
 
  const getAllModelsWithPhotos = async (req, res) => {
     try {
-      // Find all models, selecting name, description, and profilePhoto fields
+      
       const models = await modelModel.find().select('name description profilePhoto');
   
-      // Retrieve associated photos for each model
+      
       const modelsWithPhotos = await Promise.all(
         models.map(async (model) => {
           const photos = await photoModel.find({ modelId: model._id }).select('url');
@@ -32,7 +32,7 @@ const addModel = async (req, res) => {
         })
       );
   
-      // Return the list of models with their associated photos
+      
       res.status(200).json(modelsWithPhotos);
     } catch (error) {
       res.status(500).json({ message: 'Error retrieving models and photos', error: error.message });
@@ -70,25 +70,24 @@ const addModel = async (req, res) => {
 };
 
 const updateModel = async (req, res) => {
-  const { id } = req.params; // Extract model ID from the route parameters
-  const { name, description, profilePhoto, websiteLink, email } = req.body; // Extract fields to update from the request body
-
+  const { id } = req.params; 
+  const { name, description, profilePhoto, websiteLink, email } = req.body; 
   try {
-      // Find and update the model with the provided data
+      
       const updatedModel = await modelModel.findByIdAndUpdate(
           id,
           { name, description, profilePhoto, websiteLink, email },
-          { new: true, runValidators: true } // Options: return the updated document and validate data
+          { new: true, runValidators: true } 
       );
 
       if (!updatedModel) {
           return res.status(404).json({ message: "Model not found" });
       }
 
-      // Return the updated model
+      
       res.status(200).json(updatedModel);
   } catch (error) {
-      // Handle any errors
+     
       console.log(error.message);
       res.status(500).json({ message: "Error updating model", error: error.message });
   }

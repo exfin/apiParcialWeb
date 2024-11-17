@@ -13,12 +13,12 @@ const addMakeup = async (req, res) => {
 
 const getAllMakeups = async (req, res) => {
     try {
-      // Fetch all makeups from the database
+      
       const makeups = await makeupModel.find().select('name description profilePhoto price');
-      // Return the makeups as a JSON response
+      
       res.status(200).json(makeups);
     } catch (error) {
-      // Handle any errors that occur
+      
       res.status(500).json({ message: 'Error retrieving makeups', error: error.message });
     }
   };
@@ -42,12 +42,12 @@ const getAllMakeups = async (req, res) => {
 
   const getAllMakeupsComplete = async (req, res) => {
     try {
-        // Fetch all makeups from the database without selecting specific fields, which retrieves the whole data
+        
         const makeups = await makeupModel.find();
-        // Return the makeups as a JSON response
+       
         res.status(200).json(makeups);
     } catch (error) {
-        // Handle any errors that occur
+        
         res.status(500).json({ message: 'Error retrieving makeups', error: error.message });
     }
 };
