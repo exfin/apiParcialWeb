@@ -28,7 +28,15 @@ This project, developed by **Juan Miguel Lopez** and **Mateus Lanzoni**, is a fu
       npm install
       ```
 
-3. **Start the Application**:
+3. **Specify the Port, JWT and database link in a .env in the root directory**:
+    
+      ```bash
+      PORT 
+      MONGO_LINK
+      JWT_SECRET 
+      ```
+
+4. **Start the Application**:
    
       ```bash
       npm start
