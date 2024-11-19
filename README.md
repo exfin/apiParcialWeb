@@ -19,7 +19,7 @@ This project, developed by **Juan Miguel Lopez** and **Mateus Lanzoni**, is a fu
 
 1. **Clone the Repository**:  
    ```bash
-   git clone https://github.com/your-repository-link.git  
+   git clone https://github.com/exfin/apiParcialWeb.git  
    cd your-repository-folder  
 
 2. **Install Dependencies**:
